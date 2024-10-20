@@ -66,7 +66,7 @@ public class PlaywrightApiTest {
         closePlaywright();
     }
 
-    @Test(testName = "[UI] Login to Book App")
+    @Test(testName = "[API] Login to Book App")
     void loginToBookStore() {
         var data = Map.of(
                 "username", "test",

@@ -8,19 +8,25 @@
         </encoder>
     </appender>
 
-    <appender name="ALLURE" class="com.com.skryl.logging.LogbackAllureAppender"/>
-    <appender name="REPORTPORTAL" class="com.com.skryl.logging.LogbackReportPortalAppender"/>
+    <appender name="ALLURE" class="com.skryl.logging.LogbackAllureAppender"/>
+    <appender name="ReportPortalAppender" class="com.epam.reportportal.logback.appender.ReportPortalAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n</pattern>
+        </encoder>
+    </appender>
 
     <logger name="com.skryl" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ALLURE" />
-        <appender-ref ref="REPORTPORTAL" />
+        <appender-ref ref="ReportPortalAppender"/>
+<!--        <appender-ref ref="REPORTPORTAL" />-->
     </logger>
 
     <root level="WARN">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ALLURE" />
-        <appender-ref ref="REPORTPORTAL" />
+        <appender-ref ref="ReportPortalAppender"/>
+<!--        <appender-ref ref="REPORTPORTAL" />-->
     </root>
     <logger name="io.qameta.allure" level="OFF" />
 

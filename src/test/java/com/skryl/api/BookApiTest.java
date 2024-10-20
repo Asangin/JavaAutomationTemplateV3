@@ -16,15 +16,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BookApiTest {
     private static BookApiStep bookApiStep;
 
-    @BeforeClass
-    static void restAssuredSetup() {
+    @BeforeClass(alwaysRun = true)
+    void restAssuredSetup() {
         var config = ConfigFactory.create(ApplicationConfig.class);
         var baseUrl = config.uiUrl();
         bookApiStep = new BookApiStep(new BookApi(baseUrl));
     }
 
-    @Test(testName = "[API] User Login To BookApp")
-    @Attributes(attributes = { @Attribute(key = "key", value = "value") })
+    @Test(testName = "[API] User Login To BookApp", groups = {"smoke"})
+    @Attributes(attributes = {@Attribute(key = "key", value = "value")})
     void userLoginToBookApp() {
         log.info("Test started");
         var user = bookApiStep.login("test", "test");

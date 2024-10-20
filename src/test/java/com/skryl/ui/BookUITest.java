@@ -24,14 +24,14 @@ public class BookUITest {
     Page page;
 
     @BeforeClass
-    static void setUp() {
+    void setUp() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
                 .setHeadless(false).setSlowMo(150));
     }
 
     @AfterClass
-    static void closeBrowser() {
+    void closeBrowser() {
         playwright.close();
     }
 
@@ -56,7 +56,7 @@ public class BookUITest {
         log.info("RP_MESSAGE#FILE#{}#{}", new File(traceZip).getAbsolutePath(), "I'm logging content via trace file");
     }
 
-    @Test(testName = "Test #1 User login and create book")
+    @Test(testName = "[UI] Test #1 User login and create book")
     void userLoginAndCreateBook() {
         var config = ConfigFactory.create(ApplicationConfig.class);
         var baseUrl = config.uiUrl();

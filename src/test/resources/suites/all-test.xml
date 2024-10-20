@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="SuiteAll" verbose="1">
+    <test name="Regression All">
+        <packages>
+            <package name="com.skryl.api"/>
+            <package name="com.skryl.ui"/>
+        </packages>
+    </test>
+</suite>

@@ -1,7 +1,8 @@
 package com.skryl.api.book;
 
+import com.epam.reportportal.restassured.ReportPortalRestAssuredLoggingFilter;
 import com.google.gson.JsonElement;
-import com.skryl.logging.ReportPortalNetworkTrafficFilter;
+import com.epam.reportportal.listeners.LogLevel;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.config.ObjectMapperConfig;
@@ -26,7 +27,7 @@ public class BookApi {
                 .filter(new RequestLoggingFilter())
                 .filter(new ResponseLoggingFilter())
                 .filter(new AllureRestAssured())
-                .filter(new ReportPortalNetworkTrafficFilter());
+                .filter(new ReportPortalRestAssuredLoggingFilter(42, LogLevel.INFO));
     }
 
     public Response login(JsonElement body) {
