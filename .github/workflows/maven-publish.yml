@@ -29,4 +29,4 @@ jobs:
     - name: Publish to GitHub Packages Apache Maven
       run: ./mvnw --batch-mode deploy -DskipTests
       env:
-        GITHUB_TOKEN: ${{ secret.WRITE_PACKAGE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.WRITE_PACKAGE_TOKEN }}
