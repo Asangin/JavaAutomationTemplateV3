@@ -37,3 +37,11 @@ export RP_LAUNCH="Smoke launch"
 ```bash
 allure serve build/allure-results
 ```
+
+## Deploy package
+
+Before deployment, ensure you export the GITHUB_TOKEN by setting it to your GitHub token with package write permissions.
+
+```bash
+./mvnw --settings .github/settings.xml --batch-mode deploy -DskipTests
+```

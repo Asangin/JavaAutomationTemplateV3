@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.skryl</groupId>
-    <artifactId>JavaAutomationTemplateV3</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>java-automation-template-v3</artifactId>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -111,7 +111,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.3</version>
+                <version>3.5.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
