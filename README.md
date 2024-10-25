@@ -45,3 +45,15 @@ Before deployment, ensure you export the GITHUB_TOKEN by setting it to your GitH
 ```bash
 ./mvnw --settings .github/settings.xml --batch-mode deploy -DskipTests
 ```
+
+## Docker build
+
+```bash
+docker build -t java-automation-template-v3 .
+```
+
+## Docker run
+
+```bash
+docker run --rm java-automation-template-v3
+```
