@@ -30,12 +30,18 @@ export RP_LAUNCH="Smoke launch"
 ./mvnw clean test 
 ```
 
+## Run TestNG suites with maven 
+
+```bash
+mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/suites/api-test.xml
+```
+
 ## View allure report
 
 > Need to install allure
 
 ```bash
-allure serve build/allure-results
+allure serve target/allure-results
 ```
 
 ## Deploy package
@@ -46,14 +52,20 @@ Before deployment, ensure you export the GITHUB_TOKEN by setting it to your GitH
 ./mvnw --settings .github/settings.xml --batch-mode deploy -DskipTests
 ```
 
-## Docker build
+## Docker build common
 
 ```bash
-docker build -t java-automation-template-v3 .
+docker build -t java-automation-template-v3 -f docker/common/Dockerfile .
 ```
 
-## Docker run
+## Docker build with Playwright dependencies
 
 ```bash
-docker run --rm java-automation-template-v3
+docker build -t java-automation-template-v3-ui -f docker/ui/Dockerfile .
+```
+
+## Docker run common image with suite specifying
+
+```bash
+docker run --rm -e SUITE_XML_FILE=src/test/resources/suites/api-test.xml -v $(pwd)/target:/app/target/ java-automation-template-v3
 ```

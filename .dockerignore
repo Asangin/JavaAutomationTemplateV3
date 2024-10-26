@@ -1,0 +1,20 @@
+# Ignore compiled Java classes
+*.class
+
+# Ignore log files
+*.log
+
+# Ignore the target directory (Maven build output)
+target/
+
+# Ignore local configuration files
+*.iml
+.idea/
+*.swp
+
+# Ignore Dockerfile itself (if not needed)
+docker
+
+# Ignore all Markdown files
+*.md
+

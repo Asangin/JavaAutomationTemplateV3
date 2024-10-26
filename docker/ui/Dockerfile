@@ -1,27 +1,24 @@
 # Use a Maven image with JDK 21
-FROM eclipse-temurin:21-jdk as builder
+FROM maven:3.9.9-eclipse-temurin-21 as builder
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the pom.xml file and resolve dependencies (faster subsequent builds)
-ADD .mvn/ .mvn/
-COPY mvnw .
+ENV env=docker
+
 COPY pom.xml .
-
-RUN echo "Listing contents of /app:" && ls -l /app
-
-RUN ./mvnw dependency:go-offline
+RUN mvn dependency:go-offline
+RUN mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
 
 # Copy the entire project source
 COPY . .
 
 # Build the project and generate test reports
-RUN ./mvnw test-compile
+RUN mvn test-compile
 
 # Optional: Use JDK slim image for just running tests separately
 #FROM eclipse-temurin:21-jre
 
 #COPY --from=builder /app/target /app/
 
-CMD ["./mvnw", "test"]
+CMD ["mvn", "test"]

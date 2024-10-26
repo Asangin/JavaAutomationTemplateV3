@@ -47,7 +47,7 @@ public class BookUITest {
 
     @AfterMethod
     void closeContext(ITestContext testInfo) {
-        var playwrightTestResultFolder = System.getProperty("user.dir") + "/build/playwright-results";
+        var playwrightTestResultFolder = System.getProperty("user.dir") + "/target/playwright-results";
         var traceZip = "%s/%s.zip".formatted(playwrightTestResultFolder, testInfo.getName().replace(" ", "_"));
         log.info("Trace zip file path: %s".formatted(traceZip));
         context.tracing().stop(new Tracing.StopOptions().setPath(Paths.get(traceZip)));
