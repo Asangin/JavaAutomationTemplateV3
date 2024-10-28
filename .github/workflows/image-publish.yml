@@ -29,10 +29,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.WRITE_PACKAGE_TOKEN }}
 
+      - name: Set Lowercase Repository Owner
+        id: set-lowercase
+        run: echo "LOWERCASE_OWNER=${{ github.repository_owner | toLowerCase() }}" >> $GITHUB_ENV
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           file: ./docker/common/Dockerfile
-          tags: ghcr.io/${{ github.repository_owner }}/java-automation-template-v3:${{ github.event.inputs.tag }}
+          tags: ghcr.io/${{ env.LOWERCASE_OWNER }}/java-automation-template-v3:${{ github.event.inputs.tag }}
