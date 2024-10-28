@@ -35,4 +35,4 @@ jobs:
           context: .
           push: true
           file: ./docker/common/Dockerfile
-          tags: ${{ github.repository_owner }}/java-automation-template-v3:${{ github.event.inputs.tag }}
+          tags: ghcr.io/${{ github.repository_owner }}/java-automation-template-v3:${{ github.event.inputs.tag }}
