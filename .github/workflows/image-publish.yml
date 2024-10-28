@@ -3,10 +3,10 @@ name: Build and Publish Docker Image
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Run docker image publication'
-        default: 'publication'
-        required: false
+      tag:
+        description: 'Docker image tag'
+        default: 'latest'
+        required: true
 
 jobs:
   build:
@@ -35,4 +35,4 @@ jobs:
           context: .
           push: true
           file: ./docker/common/Dockerfile
-          tags: ghcr.io/java-automation-template-v3:latest
+          tags: ${{ github.repository_owner }}/java-automation-template-v3:${{ github.event.inputs.tag }}
