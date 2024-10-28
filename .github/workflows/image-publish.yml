@@ -42,4 +42,4 @@ jobs:
           context: .
           push: true
           file: ./docker/common/Dockerfile
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ghcr.io/asangin/java-automation-template-v3:${{ github.event.inputs.tag }}
