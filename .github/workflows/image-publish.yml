@@ -32,4 +32,4 @@ jobs:
           context: .
           push: true
           file: ./docker/common/Dockerfile
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/java-automation-template-v3:latest
