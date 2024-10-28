@@ -20,7 +20,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ github.repository_owner}}/${{ github.repository }}:${{ github.event.inputs.tag }}
+          images: java-automation-template-v3
+          tags: ${{ github.event.inputs.tag }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
