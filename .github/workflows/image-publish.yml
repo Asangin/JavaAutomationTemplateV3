@@ -16,6 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ github.repository_owner}}/${{ github.repository }}:${{ github.event.inputs.tag }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -35,4 +41,4 @@ jobs:
           context: .
           push: true
           file: ./docker/common/Dockerfile
-          tags: ghcr.io/${{ github.repository_owner.toLowerCase() }}/java-automation-template-v3:${{ github.event.inputs.tag }}
+          tags: ${{ steps.meta.outputs.tags }}
