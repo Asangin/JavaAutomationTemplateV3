@@ -31,5 +31,5 @@ jobs:
         with:
           context: .
           push: true
-          file: ./docker/Dockerfile
+          file: ./docker/common/Dockerfile
           tags: ghcr.io/${{ github.repository }}:latest
