@@ -16,10 +16,11 @@ import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.mapper.ObjectMapperType.GSON;
 
-public class BookApi {
+public final class BookApi {
+    public static final int FILTER_ORDER = 42;
     private final RequestSpecification requestSpec;
 
-    public BookApi(String baseUrl) {
+    public BookApi(final String baseUrl) {
         requestSpec = RestAssured.given()
                 .baseUri(baseUrl)
                 .basePath("/api")
@@ -27,10 +28,10 @@ public class BookApi {
                 .filter(new RequestLoggingFilter())
                 .filter(new ResponseLoggingFilter())
                 .filter(new AllureRestAssured())
-                .filter(new ReportPortalRestAssuredLoggingFilter(42, LogLevel.INFO));
+                .filter(new ReportPortalRestAssuredLoggingFilter(FILTER_ORDER, LogLevel.INFO));
     }
 
-    public Response login(JsonElement body) {
+    public Response login(final JsonElement body) {
         return RestAssured.given()
                 .spec(requestSpec)
                 .contentType(ContentType.JSON)
@@ -38,21 +39,21 @@ public class BookApi {
                 .post("/auth/login");
     }
 
-    public Response loginAccount(Cookies cookies) {
+    public Response loginAccount(final Cookies cookies) {
         return RestAssured.given()
                 .spec(requestSpec)
                 .cookies(cookies)
                 .get("/auth/loginAccount");
     }
 
-    public Response loginStatus(Cookies cookies) {
+    public Response loginStatus(final Cookies cookies) {
         return RestAssured.given()
                 .spec(requestSpec)
                 .cookies(cookies)
                 .get("/auth/loginStatus");
     }
 
-    public Response logout(Cookies cookies) {
+    public Response logout(final Cookies cookies) {
         return RestAssured.given()
                 .spec(requestSpec)
                 .cookies(cookies)
