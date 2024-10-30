@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+
+<module name="Checker">
+
+    <!--Checks for whitespace -->
+
+    <!-- See https://checkstyle.sourceforge.io/checks/whitespace/filetabcharacter.html -->
+    <!-- Checks that there are no tab characters ('\t') in the source code.-->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <!-- See https://checkstyle.sourceforge.io/checks/sizes/linelength.html-->
+    <!-- Checks for long lines.-->
+    <module name="LineLength">
+        <property name="fileExtensions" value="java"/>
+        <property name="max" value="100"/>
+    </module>
+
+    <module name="JavadocPackage"/>
+
+    <module name="TreeWalker">
+        <module name="AvoidStarImport"/>
+        <module name="ConstantName"/>
+        <module name="EmptyBlock"/>
+    </module>
+</module>

@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Skryl D.V. on 2022-04-16
  */
 @Slf4j
-public class MainPage{
+public class MainPage {
     private final Page page;
 
     public MainPage(Page page) {
@@ -62,13 +62,13 @@ public class MainPage{
 
     public MainPage chooseCategory(BookCategory bookCategory) {
         page.click("text=Category Technical Book Magazine Novel >> input[type=\"text\"]");
-        page.click("button:has-text(\""+bookCategory.getCategoryName()+"\")");
+        page.click("button:has-text(\"" + bookCategory.getCategoryName() + "\")");
         return this;
     }
 
     public MainPage chooseFormat(BookFormat bookFormat) {
         page.click("text=Format Paper Book e-Book >> input[type=\"text\"]");
-        page.click("button:has-text(\""+bookFormat.getFormatName()+"\")");
+        page.click("button:has-text(\"" + bookFormat.getFormatName() + "\")");
         return this;
     }
 
