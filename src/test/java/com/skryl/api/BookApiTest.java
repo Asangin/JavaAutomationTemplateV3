@@ -4,7 +4,6 @@ import com.github.javafaker.Faker;
 import com.skryl.api.book.BookApi;
 import com.skryl.api.book.BookApiStep;
 import com.skryl.configuration.ApplicationConfig;
-import com.skryl.model.book.Book;
 import com.skryl.model.book.BookCategory;
 import com.skryl.model.book.BookFormat;
 import org.aeonbits.owner.ConfigFactory;
@@ -15,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BookApiTest {
     private BookApiStep bookApiStep;
-    private Faker faker = new Faker();
+    private final Faker faker = new Faker();
 
     @BeforeSuite(groups = {"smoke"})
     public void apiSetup() {

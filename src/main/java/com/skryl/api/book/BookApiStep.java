@@ -4,8 +4,6 @@ import com.google.gson.JsonObject;
 import com.skryl.model.book.*;
 import io.restassured.http.Cookies;
 
-import java.util.List;
-
 import static org.apache.http.HttpStatus.SC_OK;
 
 public final class BookApiStep {

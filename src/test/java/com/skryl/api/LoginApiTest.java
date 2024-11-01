@@ -42,7 +42,7 @@ public class LoginApiTest {
         var user = bookApiStep.login("test2", "test2");
         assertThat(user.getId()).isEqualTo(2);
 
-        var actualStatus = bookApiStep.loginStatus();
+        var actualStatus = bookApiStep.loginAccount();
         assertThat(actualStatus)
                 .as("User should be logged in")
                 .isTrue();
