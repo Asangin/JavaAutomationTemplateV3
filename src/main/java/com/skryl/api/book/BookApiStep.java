@@ -1,8 +1,10 @@
 package com.skryl.api.book;
 
 import com.google.gson.JsonObject;
-import com.skryl.model.book.LoggedInUserResponse;
+import com.skryl.model.book.*;
 import io.restassured.http.Cookies;
+
+import java.util.List;
 
 import static org.apache.http.HttpStatus.SC_OK;
 
@@ -39,6 +41,22 @@ public final class BookApiStep {
     public void logout() {
         var response = bookAppApi.logout(cookies);
         response.then().statusCode(SC_OK);
+    }
+
+    public Book createNewBook(
+            String title,
+            String isbn,
+            BookCategory categoryId,
+            BookFormat formatId
+    ) {
+        var body = new CreateBookRequestDto()
+                .title(title)
+                .isbn(isbn)
+                .categoryId(categoryId.getCategoryId())
+                .formatId(formatId.getFormatId());
+        var response = bookAppApi.postBook(body, cookies);
+        response.then().statusCode(SC_OK);
+        return response.as(Book.class);
     }
 
 }

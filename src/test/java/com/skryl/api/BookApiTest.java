@@ -1,50 +1,49 @@
 package com.skryl.api;
 
-import com.epam.reportportal.annotations.attribute.Attribute;
-import com.epam.reportportal.annotations.attribute.Attributes;
+import com.github.javafaker.Faker;
 import com.skryl.api.book.BookApi;
 import com.skryl.api.book.BookApiStep;
 import com.skryl.configuration.ApplicationConfig;
-import lombok.extern.slf4j.Slf4j;
+import com.skryl.model.book.Book;
+import com.skryl.model.book.BookCategory;
+import com.skryl.model.book.BookFormat;
 import org.aeonbits.owner.ConfigFactory;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
-public class BookApiTest {
-    private static BookApiStep bookApiStep;
 
-    @BeforeClass(alwaysRun = true)
-    void restAssuredSetup() {
+public class BookApiTest {
+    private BookApiStep bookApiStep;
+    private Faker faker = new Faker();
+
+    @BeforeSuite(groups = {"smoke"})
+    public void apiSetup() {
         var config = ConfigFactory.create(ApplicationConfig.class);
         var baseUrl = config.uiUrl();
         bookApiStep = new BookApiStep(new BookApi(baseUrl));
     }
 
-    @Test(testName = "[API] User Login To BookApp", groups = {"smoke"})
-    @Attributes(attributes = {@Attribute(key = "key", value = "value")})
-    void userLoginToBookApp() {
-        log.info("Test started");
-        var user = bookApiStep.login("test", "test");
-        assertThat(user.getId()).isEqualTo(1);
-
-        var actualStatus = bookApiStep.loginStatus();
-        assertThat(actualStatus)
-                .as("User should be logged in")
-                .isTrue();
+    @BeforeTest(groups = {"smoke"})
+    public void login() {
+        bookApiStep.login("test", "test");
     }
 
-    @Test(testName = "[API] User 2 Login To BookApp", groups = {"smoke"})
-    @Attributes(attributes = {@Attribute(key = "key", value = "value")})
-    void user2LoginToBookApp() {
-        var user = bookApiStep.login("test2", "test2");
-        assertThat(user.getId()).isEqualTo(2);
+    @AfterTest(groups = {"smoke"})
+    public void logout() {
+        bookApiStep.logout();
+    }
 
-        var actualStatus = bookApiStep.loginStatus();
-        assertThat(actualStatus)
-                .as("User should be logged in")
-                .isTrue();
+    @Test(testName = "[API] Create new book", groups = {"smoke"})
+    public void createBook() {
+        bookApiStep.loginStatus();
+        var books = bookApiStep.createNewBook(
+                "My new epic book",
+                faker.code().isbn10(),
+                BookCategory.TECHNICAL_BOOK,
+                BookFormat.E_BOOK
+        );
+        assertThat(books.getTitle())
+                .isEqualTo("My new epic book");
     }
 }

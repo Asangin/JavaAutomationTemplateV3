@@ -3,6 +3,7 @@ package com.skryl.api.book;
 import com.epam.reportportal.restassured.ReportPortalRestAssuredLoggingFilter;
 import com.google.gson.JsonElement;
 import com.epam.reportportal.listeners.LogLevel;
+import com.skryl.model.book.CreateBookRequestDto;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.config.ObjectMapperConfig;
@@ -25,6 +26,7 @@ public final class BookApi {
                 .baseUri(baseUrl)
                 .basePath("/api")
                 .config(new RestAssuredConfig().objectMapperConfig(new ObjectMapperConfig(GSON)))
+                .contentType(ContentType.JSON)
                 .filter(new RequestLoggingFilter())
                 .filter(new ResponseLoggingFilter())
                 .filter(new AllureRestAssured())
@@ -58,5 +60,13 @@ public final class BookApi {
                 .spec(requestSpec)
                 .cookies(cookies)
                 .post("/auth/logout");
+    }
+
+    public Response postBook(CreateBookRequestDto body, final Cookies cookies) {
+        return RestAssured.given()
+                .spec(requestSpec)
+                .cookies(cookies)
+                .body(body)
+                .post("/books");
     }
 }
