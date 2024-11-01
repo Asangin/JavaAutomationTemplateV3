@@ -35,4 +35,16 @@ public class BookApiTest {
                 .as("User should be logged in")
                 .isTrue();
     }
+
+    @Test(testName = "[API] User 2 Login To BookApp", groups = {"smoke"})
+    @Attributes(attributes = {@Attribute(key = "key", value = "value")})
+    void user2LoginToBookApp() {
+        var user = bookApiStep.login("test2", "test2");
+        assertThat(user.getId()).isEqualTo(2);
+
+        var actualStatus = bookApiStep.loginStatus();
+        assertThat(actualStatus)
+                .as("User should be logged in")
+                .isTrue();
+    }
 }

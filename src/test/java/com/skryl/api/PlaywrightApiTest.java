@@ -40,7 +40,7 @@ public class PlaywrightApiTest {
                 .setExtraHTTPHeaders(headers));
     }
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     void beforeAll() {
         createPlaywright();
         createAPIRequestContext();
@@ -60,13 +60,13 @@ public class PlaywrightApiTest {
         }
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     void afterAll() {
         disposeAPIRequestContext();
         closePlaywright();
     }
 
-    @Test(testName = "[API] Login to Book App")
+    @Test(testName = "[API] Login to Book App", groups = {"regression"})
     void loginToBookStore() {
         var data = Map.of(
                 "username", "test",
