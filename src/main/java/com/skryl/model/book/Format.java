@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 public class Format {
 
-@SerializedName("id")
-@Expose
-public Integer id;
-@SerializedName("name")
-@Expose
-public String name;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("name")
+    @Expose
+    private String name;
 
 }

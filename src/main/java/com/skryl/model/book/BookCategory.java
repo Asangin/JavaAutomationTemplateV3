@@ -3,9 +3,9 @@ package com.skryl.model.book;
 public enum BookCategory {
     TECHNICAL_BOOK(1), MAGAZINE(2), NOVEL(3);
 
-    final Integer categoryId;
+    private final Integer categoryId;
 
-    BookCategory(Integer categoryId) {
+    BookCategory(final Integer categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -13,3 +13,4 @@ public enum BookCategory {
         return categoryId;
     }
 }
+

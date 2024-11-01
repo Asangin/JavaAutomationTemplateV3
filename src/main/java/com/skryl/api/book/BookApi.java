@@ -62,7 +62,7 @@ public final class BookApi {
                 .post("/auth/logout");
     }
 
-    public Response postBook(CreateBookRequestDto body, final Cookies cookies) {
+    public Response postBook(final CreateBookRequestDto body, final Cookies cookies) {
         return RestAssured.given()
                 .spec(requestSpec)
                 .cookies(cookies)

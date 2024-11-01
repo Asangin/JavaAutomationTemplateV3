@@ -42,10 +42,10 @@ public final class BookApiStep {
     }
 
     public Book createNewBook(
-            String title,
-            String isbn,
-            BookCategory categoryId,
-            BookFormat formatId
+            final String title,
+            final String isbn,
+            final BookCategory categoryId,
+            final BookFormat formatId
     ) {
         var body = new CreateBookRequestDto()
                 .title(title)

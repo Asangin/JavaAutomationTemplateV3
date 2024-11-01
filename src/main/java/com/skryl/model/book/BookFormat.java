@@ -3,9 +3,9 @@ package com.skryl.model.book;
 public enum BookFormat {
     PAPER_BOOK(1), E_BOOK(2);
 
-    final Integer formatId;
+    private final Integer formatId;
 
-    BookFormat(Integer formatId) {
+    BookFormat(final Integer formatId) {
         this.formatId = formatId;
     }
 
@@ -13,3 +13,4 @@ public enum BookFormat {
         return formatId;
     }
 }
+
