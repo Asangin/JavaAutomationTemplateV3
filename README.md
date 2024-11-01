@@ -21,7 +21,7 @@
 
 ## Run with Report portal
 
-Configuration for report portal can be set in [ddd](src/test/resources/reportportal.properties)
+Configuration for report portal can be set in [reportportal.properties](src/test/resources/reportportal.properties)
 
 ### Run for different launches
 
@@ -38,7 +38,7 @@ mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/suites/api-test.xml
 
 ## View allure report
 
-> Need to install allure
+> Need to install allure [(documentation)](https://allurereport.org/docs/install/)
 
 ```bash
 allure serve target/allure-results
