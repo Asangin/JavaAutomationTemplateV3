@@ -1,0 +1,24 @@
+name: Scheduled Workflow
+
+on:
+  schedule:
+    - cron: '30 3 * * 1'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        environment:
+          - develop
+          - staging
+          - production
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Run a script
+        run: echo "This workflow runs every Monday at 3:30 AM UTC on environment ${{ matrix.environment }}"
